@@ -25,13 +25,12 @@ public class PlayerGUI implements ActionListener{
 	final JFileChooser fileChooser = new JFileChooser();
 
 	/**
-	 * Launch the application.
+	 * 
 	 */
-	public static void main(String[] args) {
-		PlayerGUI window = new PlayerGUI();
-		window.frmMpplayer.setVisible(true);
+	public JFrame getFrmMpplayer(){
+		return frmMpplayer;
 	}
-
+	
 	/**
 	 * Create the application.
 	 */

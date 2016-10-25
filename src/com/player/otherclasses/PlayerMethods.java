@@ -8,6 +8,7 @@ import jaco.mp3.player.MP3Player;
 
 public class PlayerMethods implements PlayerInterface{
 	private MP3Player mp3player;
+	boolean isRunning = false;
 	
 	public MP3Player getMp3player() {
 		return mp3player;
@@ -19,20 +20,40 @@ public class PlayerMethods implements PlayerInterface{
 
 
 	public void open(File file){
-		mp3player = new MP3Player(file);		
+		if (isRunning)
+			mp3player.stop();
+		try{
+			mp3player = new MP3Player(file);
+			play();
+		} catch(Exception e){
+			e.getMessage();
+		}
 	}
 
 	public void play(){
-		mp3player.play();
+		try{
+			isRunning = true;
+			mp3player.play();
+		} catch(NullPointerException e){
+			e.getMessage();
+		}
 	}
 
 	public void pause(){
-		mp3player.pause();
+		try{
+			isRunning = true;
+			mp3player.pause();
+		} catch(NullPointerException e){
+			e.getMessage();
+		}
 	}
 
 	public void stop(){
-		mp3player.stop();
+		try{
+			isRunning = false;
+			mp3player.stop();
+		} catch(NullPointerException e){
+			e.getMessage();
+		}
 	}
-
-	
 }
