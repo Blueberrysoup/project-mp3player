@@ -25,18 +25,10 @@ public class PlayerGUI implements ActionListener{
 	private JButton btnPlay;
 	private JButton btnPause;
 	private JButton btnStop;
-	private PlayerMethods playerMethods = new PlayerMethods();
 	private File selectedFile; 
+	private PlayerMethods playerMethods = new PlayerMethods();
 	final JFileChooser fileChooser = new JFileChooser();
 
-	/**
-	 * Get MP3player frame
-	 * @return frmMpplayer Main frame for MP3player application
-	 */
-	public JFrame getFrmMpplayer(){
-		return frmMpplayer;
-	}
-	
 	/**
 	 * Constructor for MP3player application
 	 */
@@ -46,6 +38,14 @@ public class PlayerGUI implements ActionListener{
 		addActionListeners();
 	}
 
+	/**
+	 * Get MP3player frame
+	 * @return frmMpplayer Main frame for MP3player application
+	 */
+	public JFrame getFrmMpplayer(){
+		return frmMpplayer;
+	}
+	
 	/**
 	 * Create GUI for MP3player application
 	 */
@@ -63,27 +63,27 @@ public class PlayerGUI implements ActionListener{
 		
 		lblFileName = new JLabel("");
 		lblFileName.setForeground(Color.WHITE);
-		lblFileName.setBounds(117, 24, 435, 15);
+		lblFileName.setBounds(117, 24, 309, 15);
 		
 		btnOpen = new JButton("");
 		btnOpen.setBackground(Color.WHITE);
 		btnOpen.setIcon(new ImageIcon(PlayerGUI.class.getResource("/resources/openp.jpg")));
-		btnOpen.setBounds(55, 75, 55, 25);
+		btnOpen.setBounds(65, 75, 55, 25);
 		
 		btnPlay = new JButton("");
 		btnPlay.setBackground(Color.WHITE);
 		btnPlay.setIcon(new ImageIcon(PlayerGUI.class.getResource("/resources/playp.jpg")));
-		btnPlay.setBounds(145, 75, 55, 25);
+		btnPlay.setBounds(155, 75, 55, 25);
 		
 		btnPause = new JButton("");
 		btnPause.setBackground(Color.WHITE);
 		btnPause.setIcon(new ImageIcon(PlayerGUI.class.getResource("/resources/pausep.jpg")));
-		btnPause.setBounds(235, 75, 55, 25);
+		btnPause.setBounds(245, 75, 55, 25);
 		
 		btnStop = new JButton("");
 		btnStop.setBackground(Color.WHITE);
 		btnStop.setIcon(new ImageIcon(PlayerGUI.class.getResource("/resources/stopp.jpg")));
-		btnStop.setBounds(325, 75, 55, 25);
+		btnStop.setBounds(335, 75, 55, 25);
 	}
 	
 	/**
@@ -115,12 +115,18 @@ public class PlayerGUI implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnOpen) {
-			int returnVal = fileChooser.showOpenDialog(frmMpplayer);
-			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				selectedFile = fileChooser.getSelectedFile();				
-				playerMethods.open(selectedFile);
-				lblFileName.setText(selectedFile.getName());
-			}			
+			try {
+				int returnVal = fileChooser.showOpenDialog(frmMpplayer);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					selectedFile = fileChooser.getSelectedFile();
+					if (selectedFile.isFile()){
+						playerMethods.open(selectedFile);
+						lblFileName.setText(selectedFile.getName());
+					}
+				}			
+			} catch (Exception ex){
+				ex.getMessage();
+			}
 		}
 		if (e.getSource() == btnPlay) {
 			playerMethods.play();

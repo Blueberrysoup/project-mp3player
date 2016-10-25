@@ -42,6 +42,8 @@ public class PlayerMethods implements PlayerInterface{
 		try{
 			mp3player = new MP3Player(file);
 			play();
+		} catch(NullPointerException e){
+			e.getMessage();
 		} catch(Exception e){
 			e.getMessage();
 		}
@@ -56,6 +58,8 @@ public class PlayerMethods implements PlayerInterface{
 			mp3player.play();
 		} catch(NullPointerException e){
 			e.getMessage();
+		} catch(Exception e){
+			e.getMessage();
 		}
 	}
 
@@ -68,6 +72,8 @@ public class PlayerMethods implements PlayerInterface{
 			mp3player.pause();
 		} catch(NullPointerException e){
 			e.getMessage();
+		} catch(Exception e){
+			e.getMessage();
 		}
 	}
 
@@ -79,6 +85,8 @@ public class PlayerMethods implements PlayerInterface{
 			isRunning = false;
 			mp3player.stop();
 		} catch(NullPointerException e){
+			e.getMessage();
+		} catch(Exception e){
 			e.getMessage();
 		}
 	}
