@@ -17,11 +17,12 @@ public class PlayerMethods implements PlayerInterface{
 		this.mp3player = mp3player;
 	}
 
-	public void open(){
+
+	public void open(File file){
+		mp3player = new MP3Player(file);		
 	}
 
-	public void play(File file){
-		mp3player = new MP3Player(file);
+	public void play(){
 		mp3player.play();
 	}
 
@@ -32,5 +33,6 @@ public class PlayerMethods implements PlayerInterface{
 	public void stop(){
 		mp3player.stop();
 	}
+
 	
 }

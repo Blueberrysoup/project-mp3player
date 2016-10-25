@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class PlayerGUI implements ActionListener{
 
@@ -25,7 +27,6 @@ public class PlayerGUI implements ActionListener{
 	/**
 	 * Launch the application.
 	 */
-	
 	public static void main(String[] args) {
 		PlayerGUI window = new PlayerGUI();
 		window.frmMpplayer.setVisible(true);
@@ -45,28 +46,39 @@ public class PlayerGUI implements ActionListener{
 	 */
 	private void createGUI() {
 		frmMpplayer = new JFrame();
+		frmMpplayer.getContentPane().setBackground(new Color(0, 128, 0));
 		frmMpplayer.setTitle("My MP3 player");
-		frmMpplayer.setBounds(100, 100, 589, 189);
+		frmMpplayer.setBounds(100, 100, 448, 159);
 		frmMpplayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMpplayer.getContentPane().setLayout(null);
 		
 		lblNowPlaying = new JLabel("Now playing:");
-		lblNowPlaying.setBounds(12, 12, 107, 15);
+		lblNowPlaying.setForeground(Color.WHITE);
+		lblNowPlaying.setBounds(12, 24, 107, 15);
 		
 		lblFileName = new JLabel("");
-		lblFileName.setBounds(117, 12, 435, 15);
+		lblFileName.setForeground(Color.WHITE);
+		lblFileName.setBounds(117, 24, 435, 15);
 		
-		btnOpen = new JButton("Open");
-		btnOpen.setBounds(44, 81, 117, 25);
+		btnOpen = new JButton("");
+		btnOpen.setBackground(Color.WHITE);
+		btnOpen.setIcon(new ImageIcon(PlayerGUI.class.getResource("/resources/openp.jpg")));
+		btnOpen.setBounds(55, 75, 55, 25);
 		
-		btnPlay = new JButton("Play");
-		btnPlay.setBounds(179, 81, 117, 25);
+		btnPlay = new JButton("");
+		btnPlay.setBackground(Color.WHITE);
+		btnPlay.setIcon(new ImageIcon(PlayerGUI.class.getResource("/resources/playp.jpg")));
+		btnPlay.setBounds(145, 75, 55, 25);
 		
-		btnPause = new JButton("Pause");
-		btnPause.setBounds(308, 81, 117, 25);
+		btnPause = new JButton("");
+		btnPause.setBackground(Color.WHITE);
+		btnPause.setIcon(new ImageIcon(PlayerGUI.class.getResource("/resources/pausep.jpg")));
+		btnPause.setBounds(235, 75, 55, 25);
 		
-		btnStop = new JButton("Stop");
-		btnStop.setBounds(437, 81, 117, 25);
+		btnStop = new JButton("");
+		btnStop.setBackground(Color.WHITE);
+		btnStop.setIcon(new ImageIcon(PlayerGUI.class.getResource("/resources/stopp.jpg")));
+		btnStop.setBounds(325, 75, 55, 25);
 	}
 	
 	/**
@@ -100,11 +112,12 @@ public class PlayerGUI implements ActionListener{
 			int returnVal = fileChooser.showOpenDialog(frmMpplayer);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				selectedFile = fileChooser.getSelectedFile();				
+				playerMethods.open(selectedFile);
 				lblFileName.setText(selectedFile.getName());
 			}			
 		}
 		if (e.getSource() == btnPlay) {
-			playerMethods.play(selectedFile);
+			playerMethods.play();
 		}
 		if (e.getSource() == btnPause) {
 			playerMethods.pause();
