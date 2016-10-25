@@ -1,3 +1,8 @@
+/***
+* PlayerGUI - GUI for MP3player
+* @author: Carina Ekström
+* @version: 1.0
+**/
 package com.player.otherclasses;
 
 import java.awt.event.ActionEvent;
@@ -25,14 +30,15 @@ public class PlayerGUI implements ActionListener{
 	final JFileChooser fileChooser = new JFileChooser();
 
 	/**
-	 * 
+	 * Get MP3player frame
+	 * @return frmMpplayer Main frame for MP3player application
 	 */
 	public JFrame getFrmMpplayer(){
 		return frmMpplayer;
 	}
 	
 	/**
-	 * Create the application.
+	 * Constructor for MP3player application
 	 */
 	public PlayerGUI() {
 		createGUI();
@@ -41,7 +47,7 @@ public class PlayerGUI implements ActionListener{
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Create GUI for MP3player application
 	 */
 	private void createGUI() {
 		frmMpplayer = new JFrame();
@@ -81,7 +87,7 @@ public class PlayerGUI implements ActionListener{
 	}
 	
 	/**
-	 * 
+	 * Add components to MP3player main frame
 	 */
 	private void addComponentsToFrame() {
 		frmMpplayer.getContentPane().add(lblNowPlaying);
@@ -93,7 +99,7 @@ public class PlayerGUI implements ActionListener{
 	}
 
 	/**
-	 * 
+	 * Add action listeners for MP3player components
 	 */
 	public void addActionListeners(){
 		btnOpen.addActionListener(this);
@@ -103,7 +109,8 @@ public class PlayerGUI implements ActionListener{
 	}
 	
 	/**
-	 * 
+	 * Action handlers for MP3player components
+	 * @param e action event
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
